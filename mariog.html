@@ -5,44 +5,225 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MARIOGYT - Official Site</title>
     <style>
-        :root { --main-blue: #00aaff; --dark-blue: #001f3f; --bg-overlay: rgba(0, 0, 0, 0.7); }
-        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--dark-blue); color: white; line-height: 1.6; }
-        
-        .navbar { position: fixed; top: 20px; right: 20px; z-index: 1001; }
-        .menu-icon { font-size: 30px; cursor: pointer; background: var(--bg-overlay); padding: 10px; border-radius: 5px; }
-        .nav-content { display: none; position: absolute; right: 0; background: var(--bg-overlay); min-width: 200px; border-radius: 5px; overflow: hidden; }
-        .nav-content a { color: white; padding: 12px 16px; text-decoration: none; display: block; }
-        .nav-content a:hover { background: var(--main-blue); }
-        .navbar:hover .nav-content { display: block; }
+        :root {
+            --main-blue: #00aaff;
+            --dark-blue: #001f3f;
+            --bg-overlay: rgba(0, 0, 0, 0.8);
+            --accent-color: #ffcc00;
+        }
 
-        .homepage { 
-            height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('mariog18esimo.jpg'); 
-            background-size: cover; 
-            background-position: center; 
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--dark-blue);
+            color: white;
+            line-height: 1.6;
+        }
+
+        /* Menu in alto a destra */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+        }
+
+        .menu-icon {
+            font-size: 35px;
+            cursor: pointer;
+            background: var(--main-blue);
+            padding: 5px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .nav-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: var(--bg-overlay);
+            min-width: 220px;
+            border-radius: 8px;
+            border: 1px solid var(--main-blue);
+            margin-top: 10px;
+        }
+
+        .nav-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-content a:hover {
+            background: var(--main-blue);
+        }
+
+        .navbar:hover .nav-content {
+            display: block;
+        }
+
+        /* Homepage Header */
+        .homepage {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('mariog18esimo.jpg');
+            background-size: cover;
+            background-position: center;
             text-align: center;
         }
-        .profile-pic { width: 180px; height: 180px; border-radius: 50%; border: 4px solid white; margin-bottom: 20px; object-fit: cover; }
-        .homepage h1 { font-size: 5em; margin: 0; text-shadow: 4px 4px 15px #000; letter-spacing: 8px; font-weight: 900; }
 
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 50px 20px; max-width: 1200px; margin: auto; }
-        .card { position: relative; height: 350px; border-radius: 20px; overflow: hidden; cursor: pointer; transition: 0.4s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .card:hover { transform: scale(1.05); }
-        .card img { width: 100%; height: 100%; object-fit: cover; }
-        .card-title { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px; text-align: center; font-size: 1.6em; font-weight: bold; }
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid var(--main-blue);
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
 
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); overflow-y: auto; }
-        .modal-content { background: #003366; margin: 5% auto; padding: 40px; border-radius: 25px; width: 90%; max-width: 850px; position: relative; border: 1px solid var(--main-blue); }
-        .close { position: absolute; right: 25px; top: 15px; font-size: 45px; cursor: pointer; color: #ff4444; }
-        .modal-img { width: 100%; border-radius: 15px; margin: 20px 0; object-fit: cover; }
-        .social-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #55aaff; display: flex; flex-wrap: wrap; gap: 15px; }
-        .social-links a { background: var(--main-blue); color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        
-        @media (max-width: 600px) { .homepage h1 { font-size: 3em; } }
+        .homepage h1 {
+            font-size: 5em;
+            margin: 0;
+            text-shadow: 4px 4px 15px #000;
+            letter-spacing: 8px;
+            font-weight: 900;
+        }
+
+        /* Griglia Quadrati */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            position: relative;
+            height: 350px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,170,255,0.4);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-title {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        /* Modali */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: #003366;
+            margin: 5% auto;
+            padding: 40px;
+            border-radius: 25px;
+            width: 90%;
+            max-width: 850px;
+            position: relative;
+            border: 2px solid var(--main-blue);
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 15px;
+            font-size: 45px;
+            cursor: pointer;
+            color: #ff4444;
+        }
+
+        .modal h2 {
+            color: var(--main-blue);
+            font-size: 2.5em;
+            margin-top: 0;
+        }
+
+        .modal p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            text-align: justify;
+        }
+
+        .modal-img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            display: block;
+            border: 1px solid #55aaff;
+        }
+
+        /* Bottoni */
+        .btn-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #55aaff;
+        }
+
+        .btn {
+            background: var(--main-blue);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: white;
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        .btn-video { background: #ff0000; }
+        .btn-insta { background: #e1306c; }
+        .btn-tiktok { background: #000000; border: 1px solid white; }
+
+        @media (max-width: 600px) {
+            .homepage h1 { font-size: 3em; }
+            .modal-content { padding: 20px; }
+        }
     </style>
 </head>
 <body>
@@ -87,9 +268,12 @@
         <div class="modal-content">
             <span class="close" onclick="closeM('chi-sono')">&times;</span>
             <h2>Chi sono</h2>
-            <p>Ciao a tutti ragazzi, io sono Mario e questo è il mio sito...</p>
-            <div class="social-links">
-                <a href="https://www.youtube.com/@MariogYT" target="_blank">YouTube</a>
+            <p>Ciao a tutti ragazzi, io sono Mario e questo è il mio sito. Ho aperto un canale YouTube il 30 gennaio 2022, pubblicando molti video: dalle reaction ai videogame, fino alle partite di calcio. Il mio sogno nel cassetto è quello di raggiungere i 100.000 iscritti; non so se ce la farò mai, ma spero un giorno di arrivarci. Se volete contribuire a questo mio sogno, cliccate su questo link: <a href="https://www.youtube.com/@MariogYT" style="color: #ffcc00;">https://www.youtube.com/@MariogYT</a> e iscrivetevi. Se invece volete scoprire quali contenuti propongo, trovate negli altri tre quadratini la descrizione di ciò che faccio. Grazie a chiunque deciderà di supportarmi</p>
+            <img src="profilo.jpg" class="modal-img">
+            <div class="btn-container">
+                <a href="https://www.youtube.com/@MariogYT" class="btn btn-video" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/_mariogyt_/" class="btn btn-insta" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@mariogyt_?_r=1&_t=ZN-954SvRX5ZBO" class="btn btn-tiktok" target="_blank">TikTok</a>
             </div>
         </div>
     </div>
@@ -98,8 +282,14 @@
         <div class="modal-content">
             <span class="close" onclick="closeM('reaction')">&times;</span>
             <h2>Reaction</h2>
+            <p>Tifo Napoli da quando sono piccolo e, dal 2022, realizzo video reaction alle partite insieme a mio padre. Mi diverto molto a farle e sono stato fortunato: in quattro anni di video ho visto vincere due scudetti (stagione 2022/2023 e stagione 2024/2025). Possiamo quindi dire che l'apertura del mio canale abbia portato bene al Napoli, dato che non vinceva da trentatré anni prima che iniziassi. Spero di vederne molti altri e di continuare con quello che è ormai il mio marchio di fabbrica: le reaction.</p>
             <img src="scudetto.jpg" class="modal-img">
-            <p>Tifo Napoli da quando sono piccolo...</p>
+            <div class="btn-container">
+                <a href="https://youtu.be/MpQu9JfPb64?si=q5GrE5IX_LjHA-MZ" class="btn btn-video" target="_blank">Video 4° Scudetto</a>
+                <a href="https://www.youtube.com/@MariogYT" class="btn btn-video" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/_mariogyt_/" class="btn btn-insta" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@mariogyt_?_r=1&_t=ZN-954SvRX5ZBO" class="btn btn-tiktok" target="_blank">TikTok</a>
+            </div>
         </div>
     </div>
 
@@ -107,10 +297,17 @@
         <div class="modal-content">
             <span class="close" onclick="closeM('tornei')">&times;</span>
             <h2>I tornei di Mariog</h2>
+            <p>Essendo un grande appassionato di calcio, ho praticato questo sport per dieci anni; purtroppo, a causa del Covid e degli impegni scolastici, sono stato costretto a smettere. Da qui è nata l'idea di organizzare dei tornei con i miei amici e di caricare tutte le partite sul mio canale YouTube. Nel 2023 ha preso vita la mia squadra, il Napoli Matches (NM), e proprio nell'estate di quell'anno ho inaugurato il primo torneo, denominato 'Five Champions League'.<br><br>Le quattro squadre partecipanti erano Napoli Matches, Barcellona, Bayern Monaco e Manchester City. Il format prevedeva semifinali (andata e ritorno), una finale e la finale per il 3° e 4° posto. Ogni compagine schierava cinque giocatori e, non avendo budget, ci siamo accontentati di un campo in terra battuta. Le semifinali hanno visto contrapposti Manchester City vs NM e Barcellona vs Bayern Monaco. All'andata i risultati sono stati: Manchester City 3-0 Napoli Matches e Barcellona 2-0 Bayern Monaco. Al ritorno, il NM è riuscito nell'impresa di ribaltare il punteggio (3-1 sul campo e 3-1 ai rigori), conquistando la finale; il Barcellona, invece, ha passato il turno vincendo 1-0 al ritorno (3-0 totale). Nella finalissima il Napoli Matches ha trionfato per 3-2 sul Barcellona, portando a casa il mio primo torneo.<br><br>Successivamente ho organizzato la 'Winter League 2023/2024', disputata sempre in un campo di terra e a calcio a 5. Questa volta abbiamo optato per un formato a campionato con classifica finale e sei partite per squadra. Le partecipanti erano Napoli Matches, PSG, Barcellona e Bayern Monaco. La classifica ha visto il PSG al primo posto, seguito da Barcellona, NM e Bayern Monaco. Essendo le vincitrici dei primi due tornei, PSG e NM si sono sfidate in una finale secca di Supercoppa. La partita è terminata 7-5 per il PSG, ma con una grande novità: abbiamo finalmente giocato su un campo in erba sintetica!<br><br>Dopo queste esperienze, ho deciso di abbandonare il calcio a 5 in favore del calcio a 7. Non avendo a disposizione campi in terra per sette giocatori, ci siamo trasferiti ufficialmente sul sintetico. Nell'estate 2024 è nato così il 'TAV Champions Trophy', un'evoluzione della Five Champions League con lo stesso format (semifinali e finale). Le squadre erano NM, Borussia Dortmund, Arsenal (eterna rivale del NM) e Real Madrid; il torneo si è concluso con la vittoria dell'Arsenal in finale sul Borussia Dortmund.<br><br>In inverno è seguita la 'Winter League 2024/2025', sempre a 7 e sul sintetico. A causa dei costi elevati, siamo passati da sei a tre partite per squadra. Il Borussia Dortmund ha vinto il torneo, seguito dal NM che ha chiuso al secondo posto a pari punti: purtroppo gli scontri diretti ci hanno penalizzato, vista la sconfitta per 1-0 contro il BVB. Al terzo posto si è classificato l'Arsenal, deludente dopo il successo precedente, e al quarto il Real Madrid. La Supercoppa tra Arsenal e Borussia Dortmund è stata poi vinta dai londinesi.<br><br>Infine, ho ufficializzato l'ultimo torneo: la 'TAV Master Cup', un format unico che univa la fase a campionato a quella a eliminazione diretta. Dopo sei partite, il NM ha dominato la classifica con 12 punti, seguito da Arsenal (9), Borussia Dortmund (7) e Real Madrid (6.5, a causa di una penalità di 0.5 punti). Come da regolamento, il NM è approdato direttamente in finale, attendendo la vincente della semifinale tra Arsenal e Borussia Dortmund. L'Arsenal ha vinto agevolmente, dando vita al 'Derby di TAV' per l'atto conclusivo. È stata una partita folle tra due squadre fortissime, ma a spuntarla è stato il Napoli Matches per 5-3. Si conclude così la storia dei miei tornei: la mia squadra ha vinto il primo e l'ultimo titolo... .</p>
             <img src="TMC.jpg" class="modal-img">
-            <p>...Storia dei tornei completa...</p>
             <img src="Nm.jpg" class="modal-img">
             <img src="mariogcalcio.jpg" class="modal-img">
+            <div class="btn-container">
+                <a href="https://www.instagram.com/tavmastercup/" class="btn btn-insta" target="_blank">Instagram TMC</a>
+                <a href="https://www.tiktok.com/@tavmastercup" class="btn btn-tiktok" target="_blank">TikTok TMC</a>
+                <a href="https://www.instagram.com/_napolimatches/" class="btn btn-insta" target="_blank">Instagram NM</a>
+                <a href="https://www.tiktok.com/@napolimatches" class="btn btn-tiktok" target="_blank">TikTok NM</a>
+                <a href="https://www.youtube.com/@MariogYT" class="btn btn-video" target="_blank">YouTube</a>
+            </div>
         </div>
     </div>
 
@@ -118,15 +315,33 @@
         <div class="modal-content">
             <span class="close" onclick="closeM('f1')">&times;</span>
             <h2>Formula 1</h2>
+            <p>Oltre al calcio, in questi anni mi sono appassionato moltissimo alla Formula 1: ovviamente tifo Ferrari e il mio pilota preferito è Lewis Hamilton, a pari merito con Leclerc. Nel 2023 ho anche acquistato il gioco ufficiale della F1, su cui ho realizzato molti video, sia da solo che in compagnia; devo dire che sono i contenuti più divertenti da registrare dopo le reaction e i tornei. Man mano che giocavo sono migliorato e la passione è cresciuta sempre di più. Purtroppo, non avendo la PS5, la qualità dei contenuti non è progredita ulteriormente, infatti gioco ancora a F1 23, ma non fa nulla: l'importante è divertirsi. Inoltre, se con le reaction ho portato fortuna al Napoli (con due scudetti vinti), in Formula 1 la Ferrari deve ancora tornare a vincere un titolo... ma non importa, continuerò comunque a supportare la Rossa.</p>
             <img src="lh44cl16.jpg" class="modal-img">
-            <p>Tifo Ferrari...</p>
             <img src="copertinamonzaf1.jpg" class="modal-img">
+            <div class="btn-container">
+                <a href="https://youtu.be/FZlBsxWhKzs" class="btn btn-video" target="_blank">Video F1 Ep. 22</a>
+                <a href="https://www.youtube.com/@MariogYT" class="btn btn-video" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/_mariogyt_/" class="btn btn-insta" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@mariogyt_?_r=1&_t=ZN-954SvRX5ZBO" class="btn btn-tiktok" target="_blank">TikTok</a>
+            </div>
         </div>
     </div>
 
     <script>
-        function openM(id) { document.getElementById(id).style.display = "block"; document.body.style.overflow = "hidden"; }
-        function closeM(id) { document.getElementById(id).style.display = "none"; document.body.style.overflow = "auto"; }
+        function openM(id) {
+            document.getElementById(id).style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+        function closeM(id) {
+            document.getElementById(id).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        window.onclick = function(e) {
+            if (e.target.className === 'modal') {
+                e.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
     </script>
 </body>
 </html>
