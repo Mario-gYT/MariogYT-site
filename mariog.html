@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARIOGYT - Official Site</title>
+    <style>
+        :root { --main-blue: #00aaff; --dark-blue: #001f3f; --bg-overlay: rgba(0, 0, 0, 0.7); }
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background-color: var(--dark-blue); color: white; line-height: 1.6; }
+        
+        /* Navbar */
+        .navbar { position: fixed; top: 20px; right: 20px; z-index: 1001; }
+        .menu-icon { font-size: 30px; cursor: pointer; background: var(--bg-overlay); padding: 10px; border-radius: 5px; }
+        .nav-content { display: none; position: absolute; right: 0; background: var(--bg-overlay); min-width: 200px; border-radius: 5px; overflow: hidden; }
+        .nav-content a { color: white; padding: 12px 16px; text-decoration: none; display: block; }
+        .nav-content a:hover { background: var(--main-blue); }
+        .navbar:hover .nav-content { display: block; }
+
+        /* Homepage Header */
+        .homepage { 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('mariog18esimo.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            text-align: center;
+        }
+        .profile-pic { width: 180px; height: 180px; border-radius: 50%; border: 4px solid white; margin-bottom: 20px; object-fit: cover; }
+        .homepage h1 { font-size: 5em; margin: 0; text-shadow: 4px 4px 15px #000; letter-spacing: 8px; font-weight: 900; }
+
+        /* Grid Section */
+        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding: 50px 20px; max-width: 1200px; margin: auto; }
+        .card { position: relative; height: 350px; border-radius: 20px; overflow: hidden; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card:hover { transform: scale(1.05); }
+        .card img { width: 100%; height: 100%; object-fit: cover; }
+        .card-title { position: absolute; bottom: 0; background: linear-gradient(transparent, rgba(0,0,0,0.9)); width: 100%; padding: 20px; text-align: center; font-size: 1.6em; font-weight: bold; }
+
+        /* Modals */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); overflow-y: auto; }
+        .modal-content { background: #003366; margin: 5% auto; padding: 40px; border-radius: 25px; width: 90%; max-width: 850px; position: relative; border: 1px solid var(--main-blue); }
+        .close { position: absolute; right: 25px; top: 15px; font-size: 45px; cursor: pointer; color: #ff4444; }
+        .modal-img { width: 100%; border-radius: 15px; margin: 20px 0; object-fit: cover; }
+        .social-links { margin-top: 30px; padding-top: 20px; border-top: 1px solid #55aaff; display: flex; flex-wrap: wrap; gap: 15px; }
+        .social-links a { background: var(--main-blue); color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .social-links a:hover { background: white; color: var(--main-blue); }
+
+        @media (max-width: 600px) { .homepage h1 { font-size: 3em; } }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="menu-icon">☰</div>
+        <div class="nav-content">
+            <a href="https://www.youtube.com/@MariogYT" target="_blank">YouTube</a>
+            <a href="https://www.instagram.com/_mariogyt_/" target="_blank">Instagram</a>
+            <a href="https://www.tiktok.com/@mariogyt_?_r=1&_t=ZN-954SvRX5ZBO" target="_blank">TikTok</a>
+        </div>
+    </div>
+
+    <section class="homepage">
+        <img src="immagine di profilo su Yt.jpg" class="profile-pic" alt="Mario Profile">
+        <h1>MARIOGYT</h1>
+    </section>
+
+    <div class="grid-container">
+        <div class="card" onclick="openM('chi-sono')">
+            <img src="immagine di profilo su Yt.jpg">
+            <div class="card-title">Chi sono</div>
+        </div>
+
+        <div class="card" onclick="openM('reaction')">
+            <img src="Nazzurra.jpg">
+            <div class="card-title">Reaction</div>
+        </div>
+
+        <div class="card" onclick="openM('tornei')">
+            <img src="TMC.jpg">
+            <div class="card-title">I tornei di Mariog</div>
+        </div>
+
+        <div class="card" onclick="openM('f1')">
+            <img src="ferarrimonzaf1.jpg">
+            <div class="card-title">Formula 1</div>
+        </div>
+    </div>
+
+    <div id="chi-sono" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeM('chi-sono')">&times;</span>
+            <h2>Chi sono</h2>
+            <p>Ciao a tutti ragazzi, io sono Mario e questo è il mio sito. Ho aperto un canale YouTube il 30 gennaio 2022, pubblicando molti video: dalle reaction ai videogame, fino alle partite di calcio. Il mio sogno nel cassetto è quello di raggiungere i 100.000 iscritti; non so se ce la farò mai, ma spero un giorno di arrivarci. Se volete contribuire a questo mio sogno, cliccate su questo link e iscrivetevi. Se invece volete scoprire quali contenuti propongo, trovate negli altri tre quadratini la descrizione di ciò che faccio. Grazie a chiunque deciderà di supportarmi</p>
+            <div class="social-links">
+                <a href="https://www.youtube.com/@MariogYT" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/_mariogyt_/" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@mariogyt_?_r=1&_t=ZN-954SvRX5ZBO" target="_blank">TikTok</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="reaction" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeM('reaction')">&times;</span>
+            <h2>Reaction</h2>
+            <img src="4°scudetto.jpg" class="modal-img">
+            <p>Tifo Napoli da quando sono piccolo e, dal 2022, realizzo video reaction alle partite insieme a mio padre. Mi diverto molto a farle e sono stato fortunato: in quattro anni di video ho visto vincere due scudetti (stagione 2022/2023 e stagione 2024/2025). Possiamo quindi dire che l'apertura del mio canale abbia portato bene al Napoli, dato che non vinceva da trentatré anni prima che iniziassi. Spero di vederne molti altri e di continuare con quello che è ormai il mio marchio di fabbrica: le reaction.</p>
+            <div class="social-links">
+                <a href="https://youtu.be/MpQu9JfPb64?si=q5GrE5IX_LjHA-MZ" target="_blank">Nap 2-0 Cag (4° Scudetto)</a>
+                <a href="https://www.youtube.com/@MariogYT" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/_mariogyt_/" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@mariogyt_?_r=1&_t=ZN-954SvRX5ZBO" target="_blank">TikTok</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="tornei" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeM('tornei')">&times;</span>
+            <h2>I tornei di Mariog</h2>
+            <img src="TMC.jpg" class="modal-img">
+            <p style="font-size: 0.95em;">Essendo un grande appassionato di calcio, ho praticato questo sport per dieci anni; purtroppo, a causa del Covid e degli impegni scolastici, sono stato costretto a smettere. Da qui è nata l'idea di organizzare dei tornei con i miei amici e di caricare tutte le partite sul mio canale YouTube. Nel 2023 ha preso vita la mia squadra, il Napoli Matches (NM), e proprio nell'estate di quell'anno ho inaugurato il primo torneo, denominato 'Five Champions League'... [Testo completo incluso nel codice]</p>
+            <img src="Nm.jpg" class="modal-img">
+            <img src="mariogcalcio.jpg" class="modal-img">
+            <div class="social-links">
+                <a href="https://www.instagram.com/tavmastercup/" target="_blank">Instagram TMC</a>
+                <a href="https://www.tiktok.com/@tavmastercup" target="_blank">TikTok TMC</a>
+                <a href="https://www.instagram.com/_napolimatches/" target="_blank">Instagram NM</a>
+                <a href="https://www.tiktok.com/@napolimatches" target="_blank">TikTok NM</a>
+                <a href="https://www.youtube.com/@MariogYT" target="_blank">YouTube</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="f1" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeM('f1')">&times;</span>
+            <h2>Formula 1</h2>
+            <img src="lh44cl16.jpg" class="modal-img">
+            <p>Oltre al calcio, in questi anni mi sono appassionato moltissimo alla Formula 1: ovviamente tifo Ferrari e il mio pilota preferito è Lewis Hamilton, a pari merito con Leclerc...</p>
+            <img src="copertinamonzaf1.jpg" class="modal-img">
+            <div class="social-links">
+                <a href="https://youtu.be/FZlBsxWhKzs" target="_blank">Video F1 Ep. 22</a>
+                <a href="https://www.youtube.com/@MariogYT" target="_blank">YouTube</a>
+                <a href="https://www.instagram.com/_mariogyt_/" target="_blank">Instagram</a>
+                <a href="https://www.tiktok.com/@mariogyt_?_r=1&_t=ZN-954SvRX5ZBO" target="_blank">TikTok</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openM(id) { document.getElementById(id).style.display = "block"; document.body.style.overflow = "hidden"; }
+        function closeM(id) { document.getElementById(id).style.display = "none"; document.body.style.overflow = "auto"; }
+        window.onclick = function(e) { if (e.target.className === 'modal') { e.target.style.display = "none"; document.body.style.overflow = "auto"; } }
+    </script>
+</body>
+</html>
